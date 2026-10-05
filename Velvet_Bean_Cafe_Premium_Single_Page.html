@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Velvet Bean Cafe — premium coffee, brunch and handcrafted desserts.">
+<title>Velvet Bean Café | Coffee • Brunch • Desserts</title>
+<style>
+:root{
+  --bg:#fbf7f1;--surface:#fffdf9;--ink:#211914;--muted:#776b63;
+  --coffee:#5a3424;--coffee2:#8b5e3c;--cream:#f1e4d3;--gold:#c99a52;
+  --line:#eadfd2;--shadow:0 18px 50px rgba(48,31,21,.10);
+  --radius:24px;--max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+.container{width:min(var(--max),92%);margin:auto}
+.topbar{background:var(--ink);color:#fff;padding:9px 0;font-size:13px}
+.topbar .container{display:flex;justify-content:space-between;gap:15px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,247,241,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(234,223,210,.85)}
+.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-family:Georgia,serif;font-size:25px;font-weight:800;color:var(--coffee)}
+.logo span{display:block;font:600 9px/1.2 Inter,sans-serif;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:700}
+.nav-links a{color:#4e423b;transition:.2s}.nav-links a:hover{color:var(--coffee2)}
+.btn{border:0;border-radius:999px;padding:13px 20px;background:var(--coffee);color:#fff;font-weight:800;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(90,52,36,.22)}
+.btn.alt{background:transparent;color:var(--coffee);border:1px solid #cbb8a6}
+.btn.gold{background:var(--gold);color:#24170f}
+.menu-btn{display:none;border:0;background:transparent;font-size:25px;cursor:pointer}
+.hero{min-height:650px;display:grid;place-items:center;position:relative;overflow:hidden;background:
+ radial-gradient(circle at 80% 25%,rgba(201,154,82,.18),transparent 27%),
+ radial-gradient(circle at 20% 80%,rgba(139,94,60,.12),transparent 30%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center;padding:75px 0}
+.eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:900;margin-bottom:15px}
+h1,h2,h3{font-family:Georgia,serif;line-height:1.12}
+h1{font-size:clamp(48px,6vw,82px);letter-spacing:-2px;max-width:700px}
+h1 em{color:var(--coffee2);font-style:normal}
+.hero-copy p{font-size:18px;color:var(--muted);max-width:600px;margin:23px 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.hero-card{min-height:470px;border-radius:38px;background:linear-gradient(145deg,#7c5135,#2b1c14);box-shadow:var(--shadow);position:relative;overflow:hidden;padding:28px;color:#fff;display:flex;align-items:flex-end}
+.hero-card:before{content:"";position:absolute;inset:0;background:
+ radial-gradient(circle at 50% 40%,rgba(255,255,255,.13),transparent 20%),
+ radial-gradient(circle at 45% 55%,#d7a36b 0 11%,#8b5738 12% 25%,transparent 26%),
+ radial-gradient(ellipse at 50% 62%,#20140e 0 28%,transparent 29%);
+}
+.hero-card .badge{position:relative;z-index:2;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);padding:12px 15px;border:1px solid rgba(255,255,255,.2);border-radius:16px;font-size:13px}
+.trust{padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.trust-item{display:flex;gap:12px;align-items:center;color:#5e5149;font-size:14px}.trust-icon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--cream);font-size:20px}
+section{padding:100px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:45px}.section-head h2{font-size:clamp(34px,4vw,53px)}.section-head p{max-width:520px;color:var(--muted)}
+.menu-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}.tab{border:1px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:800;color:var(--muted)}.tab.active,.tab:hover{background:var(--coffee);color:#fff;border-color:var(--coffee)}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.food-card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:20px;display:flex;gap:16px;transition:.2s}.food-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.food-art{width:86px;height:86px;flex:0 0 86px;border-radius:18px;background:linear-gradient(145deg,#d8b189,#75462f);display:grid;place-items:center;font-size:38px}.food-info{flex:1}.food-info h3{font-size:20px;margin-bottom:4px}.food-info p{font-size:13px;color:var(--muted);margin-bottom:9px}.price{font-weight:900;color:var(--coffee2)}
+.story{background:#2a1b14;color:#fff}.story-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:center}.story-visual{height:470px;border-radius:34px;background:linear-gradient(145deg,#a8764d,#392219);position:relative;overflow:hidden;box-shadow:var(--shadow)}.story-visual:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,#e7bd8d 0 15%,#70432d 16% 44%,#1c110c 45% 48%,transparent 49%);left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 28px rgba(255,255,255,.06),0 30px 80px rgba(0,0,0,.35)}.story p{color:#d5c8bf;margin:22px 0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:30px}.stat{border-top:1px solid rgba(255,255,255,.2);padding-top:15px}.stat strong{font:800 30px Georgia,serif;display:block}.stat span{font-size:12px;color:#c6b8ae}
+.specials{background:var(--cream)}.special-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.special{border-radius:28px;padding:35px;min-height:270px;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden}.special.dark{background:var(--coffee);color:#fff}.special h3{font-size:31px;margin:12px 0}.special p{color:var(--muted);max-width:450px}.special.dark p{color:#dccfc7}.price-tag{position:absolute;right:25px;top:25px;background:var(--gold);padding:10px 14px;border-radius:999px;font-weight:900;color:#2a1b14}
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:210px;gap:14px}.gallery div{border-radius:22px;background:linear-gradient(135deg,#d3a878,#6c412d);position:relative;overflow:hidden}.gallery div:nth-child(1){grid-row:span 2;background:linear-gradient(135deg,#7e543a,#2c1b13)}.gallery div:nth-child(2){background:linear-gradient(135deg,#ead2b5,#996444)}.gallery div:nth-child(3){background:linear-gradient(135deg,#b78358,#3e261b)}.gallery div:nth-child(4){background:linear-gradient(135deg,#e1c2a0,#7d4d34)}.gallery div:nth-child(5){background:linear-gradient(135deg,#af7651,#342016)}.gallery span{position:absolute;bottom:14px;left:14px;background:rgba(0,0,0,.42);color:#fff;padding:7px 10px;border-radius:10px;font-size:12px}
+.reviews{background:var(--surface)}.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.review{padding:28px;border:1px solid var(--line);border-radius:22px;background:#fff}.stars{color:#bd8436;letter-spacing:2px;margin-bottom:12px}.review p{color:#5e5149}.review strong{display:block;margin-top:18px}.reservation{background:linear-gradient(135deg,#f0dfcb,#fbf7f1)}.booking{display:grid;grid-template-columns:.9fr 1.1fr;gap:35px;align-items:stretch}.booking-copy{padding:35px}.booking-copy h2{font-size:48px}.booking-copy p{color:var(--muted);margin:20px 0}.form{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:var(--shadow)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:#6f625a}.field input,.field select,.field textarea{border:1px solid var(--line);background:#fff;padding:13px 14px;border-radius:13px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,154,82,.13)}.form .btn{margin-top:18px;width:100%}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}.contact-card{padding:30px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}.contact-list{display:grid;gap:17px;margin-top:22px}.contact-item{display:flex;gap:13px}.contact-item b{display:block}.contact-item span{color:var(--muted);font-size:14px}.map{min-height:330px;border-radius:24px;background:repeating-linear-gradient(45deg,#e7dccf 0 18px,#f4eee6 18px 36px);display:grid;place-items:center;color:var(--coffee);font-weight:900;position:relative;overflow:hidden}.map:before{content:"";width:170px;height:170px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--coffee);opacity:.9;position:absolute}.map span{position:relative;z-index:2;color:#fff;background:var(--coffee);padding:12px 18px;border-radius:999px}
+.footer{background:#211510;color:#d9ccc3;padding:55px 0 25px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:35px}.footer h3{color:#fff;font-size:20px;margin-bottom:15px}.footer p,.footer a{font-size:14px;color:#bdaea4}.footer a{display:block;margin:8px 0}.copyright{border-top:1px solid rgba(255,255,255,.1);margin-top:35px;padding-top:20px;font-size:12px;color:#98877d;display:flex;justify-content:space-between}
+.toast{position:fixed;right:22px;bottom:22px;z-index:100;background:#211510;color:#fff;padding:15px 18px;border-radius:15px;box-shadow:var(--shadow);transform:translateY(130px);transition:.3s}.toast.show{transform:translateY(0)}
+.modal{position:fixed;inset:0;background:rgba(20,12,8,.6);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:90;padding:20px}.modal.open{display:flex}.modal-box{background:var(--surface);border-radius:26px;padding:30px;width:min(500px,100%);position:relative}.close{position:absolute;right:15px;top:12px;border:0;background:var(--cream);width:35px;height:35px;border-radius:50%;cursor:pointer}.modal-box h2{font-size:34px;margin-bottom:10px}.modal-box p{color:var(--muted);margin-bottom:20px}
+@media(max-width:900px){.hero-grid,.story-grid,.booking{grid-template-columns:1fr}.hero-card{min-height:390px}.menu-grid{grid-template-columns:1fr 1fr}.review-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}.nav-links{display:none;position:absolute;top:76px;left:0;right:0;background:var(--bg);padding:20px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.menu-btn{display:block}}
+@media(max-width:600px){.topbar .container{justify-content:center}.topbar .container span:last-child{display:none}.hero-grid{padding:55px 0}.menu-grid,.special-grid,.fields{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:15px}.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:160px}.gallery div:nth-child(1){grid-column:span 2;grid-row:span 1}.stats{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.copyright{display:block}.copyright span{display:block;margin-top:8px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="container"><span>☕ Freshly roasted • Handcrafted daily</span><span>Open today: 7:00 AM — 10:30 PM</span></div></div>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="#home">VELVET BEAN<span>CAFÉ • COFFEE • BRUNCH</span></a>
+    <button class="menu-btn" aria-label="Open menu" onclick="toggleNav()">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a>
+      <button class="btn" onclick="openReservation()">Reserve a Table</button>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+ <div class="container hero-grid">
+  <div class="hero-copy">
+   <div class="eyebrow">Your daily cup of comfort</div>
+   <h1>Slow mornings. <em>Bold coffee.</em> Good company.</h1>
+   <p>A warm neighbourhood café serving specialty coffee, all-day brunch and desserts made with a little more love than necessary.</p>
+   <div class="actions"><a class="btn" href="#menu">Explore the Menu</a><button class="btn alt" onclick="openReservation()">Book a Table</button></div>
+  </div>
+  <div class="hero-card"><div class="badge">★ 4.9 guest rating<br><small>Loved for coffee, brunch & atmosphere</small></div></div>
+ </div>
+</section>
+
+<div class="trust"><div class="container trust-grid">
+ <div class="trust-item"><div class="trust-icon">☕</div><span><b>Specialty Coffee</b><br>Small-batch roasted</span></div>
+ <div class="trust-item"><div class="trust-icon">🥐</div><span><b>Fresh Every Day</b><br>Bakery & brunch</span></div>
+ <div class="trust-item"><div class="trust-icon">🌿</div><span><b>Cozy Atmosphere</b><br>Work, meet, relax</span></div>
+ <div class="trust-item"><div class="trust-icon">♻️</div><span><b>Thoughtful Choices</b><br>Local & sustainable</span></div>
+</div></div>
+
+<section id="menu">
+ <div class="container">
+  <div class="section-head"><div><div class="eyebrow">The café menu</div><h2>Made to make you stay.</h2></div><p>From first sip to final bite, our menu keeps things familiar, fresh and just a little special.</p></div>
+  <div class="menu-tabs">
+   <button class="tab active" onclick="filterMenu('all',this)">All</button><button class="tab" onclick="filterMenu('coffee',this)">Coffee</button><button class="tab" onclick="filterMenu('brunch',this)">Brunch</button><button class="tab" onclick="filterMenu('dessert',this)">Desserts</button>
+  </div>
+  <div class="menu-grid" id="menuGrid">
+   <article class="food-card" data-cat="coffee"><div class="food-art">☕</div><div class="food-info"><h3>Velvet Latte</h3><p>Double espresso, silky steamed milk, house signature blend.</p><span class="price">₹180</span></div></article>
+   <article class="food-card" data-cat="coffee"><div class="food-art">🧊</div><div class="food-info"><h3>Cold Brew</h3><p>18-hour slow steep with a smooth cocoa finish.</p><span class="price">₹160</span></div></article>
+   <article class="food-card" data-cat="coffee"><div class="food-art">🍵</div><div class="food-info"><h3>Matcha Cloud</h3><p>Premium matcha, oat milk and a soft vanilla foam.</p><span class="price">₹210</span></div></article>
+   <article class="food-card" data-cat="brunch"><div class="food-art">🥑</div><div class="food-info"><h3>Avocado Toast</h3><p>Sourdough, smashed avocado, chilli flakes, poached egg.</p><span class="price">₹320</span></div></article>
+   <article class="food-card" data-cat="brunch"><div class="food-art">🥞</div><div class="food-info"><h3>Berry Pancakes</h3><p>Fluffy stacks, seasonal berries, maple and whipped cream.</p><span class="price">₹290</span></div></article>
+   <article class="food-card" data-cat="brunch"><div class="food-art">🍳</div><div class="food-info"><h3>Café Breakfast</h3><p>Eggs, toast, sautéed mushrooms, tomato and greens.</p><span class="price">₹350</span></div></article>
+   <article class="food-card" data-cat="dessert"><div class="food-art">🍰</div><div class="food-info"><h3>Basque Cheesecake</h3><p>Caramelised top, creamy centre and berry compote.</p><span class="price">₹220</span></div></article>
+   <article class="food-card" data-cat="dessert"><div class="food-art">🍫</div><div class="food-info"><h3>Dark Chocolate Tart</h3><p>70% chocolate ganache, sea salt and cocoa crumb.</p><span class="price">₹240</span></div></article>
+   <article class="food-card" data-cat="dessert"><div class="food-art">🥐</div><div class="food-info"><h3>Almond Croissant</h3><p>Buttery layers, almond cream and toasted flakes.</p><span class="price">₹170</span></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="story" id="story">
+ <div class="container story-grid">
+  <div class="story-visual"></div>
+  <div><div class="eyebrow">Our story</div><h2>Built around the ritual of a really good cup.</h2><p>Velvet Bean started with a simple idea: make a café where people can slow down. We partner with small roasters, local bakers and farmers whenever possible, then turn those ingredients into honest food and memorable drinks.</p><p>Come in for ten quiet minutes or stay for three hours. There is always another cup waiting.</p><a class="btn gold" href="#contact">Meet Us</a>
+  <div class="stats"><div class="stat"><strong>12+</strong><span>Signature drinks</span></div><div class="stat"><strong>7 AM</strong><span>Doors open daily</span></div><div class="stat"><strong>4.9★</strong><span>Guest favourite</span></div></div></div>
+ </div>
+</section>
+
+<section class="specials">
+ <div class="container">
+  <div class="section-head"><div><div class="eyebrow">Made for today</div><h2>Café favourites.</h2></div><p>Limited specials and thoughtful combinations that change with the mood of the season.</p></div>
+  <div class="special-grid">
+   <div class="special"><span class="price-tag">₹399</span><div class="eyebrow">Weekend brunch</div><h3>The Lazy Sunday</h3><p>Berry pancakes, scrambled eggs, sourdough toast, fresh fruit and your choice of coffee.</p></div>
+   <div class="special dark"><span class="price-tag">₹299</span><div class="eyebrow">Afternoon ritual</div><h3>Coffee + Cake Set</h3><p>Any classic coffee paired with our slice of the day. Available 3:00 PM — 6:00 PM.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="gallery">
+ <div class="container">
+  <div class="section-head"><div><div class="eyebrow">Inside Velvet Bean</div><h2>A little look around.</h2></div><p>Warm corners, soft light and enough table space for conversations, laptops and long lunches.</p></div>
+  <div class="gallery"><div><span>Signature coffee</span></div><div><span>Fresh bakes</span></div><div><span>Morning light</span></div><div><span>Brunch table</span></div><div><span>Evening pours</span></div></div>
+ </div>
+</section>
+
+<section class="reviews" id="reviews">
+ <div class="container">
+  <div class="section-head"><div><div class="eyebrow">Guest notes</div><h2>Good words, honestly.</h2></div><p>What regulars and first-time visitors have to say.</p></div>
+  <div class="review-grid">
+   <article class="review"><div class="stars">★★★★★</div><p>“The latte is genuinely excellent, and the atmosphere makes you want to stay longer. Perfect little café for a slow morning.”</p><strong>— Ananya R.</strong></article>
+   <article class="review"><div class="stars">★★★★★</div><p>“Beautiful food, friendly team and the cheesecake is a must. We came for coffee and ended up staying for brunch.”</p><strong>— Karthik M.</strong></article>
+   <article class="review"><div class="stars">★★★★★</div><p>“Great place to meet friends or get some work done. Fast Wi-Fi, calm music and consistently good coffee.”</p><strong>— Priya S.</strong></article>
+  </div>
+ </div>
+</section>
+
+<section class="reservation" id="reservation">
+ <div class="container booking">
+  <div class="booking-copy"><div class="eyebrow">Reservations</div><h2>Your table is waiting.</h2><p>Planning a date, catch-up, birthday or simply a better breakfast? Send us your details and our team will confirm your booking.</p><p><b>Tip:</b> For groups of 8+, please call us directly.</p><button class="btn" onclick="scrollToContact()">Call the café</button></div>
+  <form class="form" id="bookingForm">
+   <div class="fields">
+    <div class="field"><label>Name</label><input id="guestName" required placeholder="Your name"></div>
+    <div class="field"><label>Phone</label><input id="guestPhone" required type="tel" placeholder="+91 98765 43210"></div>
+    <div class="field"><label>Date</label><input id="guestDate" required type="date"></div>
+    <div class="field"><label>Time</label><select id="guestTime" required><option value="">Choose time</option><option>08:00 AM</option><option>09:30 AM</option><option>11:00 AM</option><option>01:00 PM</option><option>03:30 PM</option><option>05:30 PM</option><option>07:30 PM</option><option>09:00 PM</option></select></div>
+    <div class="field"><label>Guests</label><select id="guestCount"><option>2 guests</option><option>3 guests</option><option>4 guests</option><option>5 guests</option><option>6 guests</option><option>7 guests</option><option>8+ guests</option></select></div>
+    <div class="field"><label>Occasion</label><select id="occasion"><option>Just coffee</option><option>Breakfast</option><option>Birthday</option><option>Date</option><option>Business meet</option><option>Other</option></select></div>
+    <div class="field full"><label>Special request</label><textarea id="request" rows="3" placeholder="Window seat, high chair, celebration note..."></textarea></div>
+   </div>
+   <button class="btn" type="submit">Request Reservation →</button>
+  </form>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="container">
+  <div class="section-head"><div><div class="eyebrow">Visit us</div><h2>Come say hello.</h2></div><p>Replace the sample details below with your café's actual address, phone number, social handles and business hours.</p></div>
+  <div class="contact-grid">
+   <div class="contact-card"><h3>Velvet Bean Café</h3><div class="contact-list">
+    <div class="contact-item"><span>📍</span><div><b>Address</b><span>12, Riverside Avenue, Chennai, Tamil Nadu 600001</span></div></div>
+    <div class="contact-item"><span>☎</span><div><b>Phone</b><span>+91 98765 43210</span></div></div>
+    <div class="contact-item"><span>✉</span><div><b>Email</b><span>hello@velvetbeancafe.com</span></div></div>
+    <div class="contact-item"><span>◷</span><div><b>Hours</b><span>Mon–Sun: 7:00 AM — 10:30 PM</span></div></div>
+   </div><div class="actions" style="margin-top:25px"><a class="btn" href="tel:+919876543210">Call Now</a><a class="btn alt" href="mailto:hello@velvetbeancafe.com">Email Us</a></div></div>
+   <div class="map"><span>📍 Velvet Bean Café</span></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer class="footer">
+ <div class="container footer-grid">
+  <div><div class="logo" style="color:#fff">VELVET BEAN<span style="color:#c99a52">CAFÉ • COFFEE • BRUNCH</span></div><p style="margin-top:16px">A neighbourhood café for specialty coffee, comforting food and unhurried conversations.</p></div>
+  <div><h3>Explore</h3><a href="#menu">Menu</a><a href="#story">Our Story</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a></div>
+  <div><h3>Visit</h3><a href="#reservation">Reservations</a><a href="#contact">Location</a><a href="#contact">Contact</a><a href="#">Instagram</a></div>
+  <div><h3>Hours</h3><p>Every day<br><b style="color:#fff">7:00 AM — 10:30 PM</b></p><p style="margin-top:12px">Kitchen closes at 10:00 PM.</p></div>
+ </div>
+ <div class="container copyright"><span>© 2026 Velvet Bean Café. All rights reserved.</span><span>Crafted as a premium single-page café website.</span></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+ <div class="modal-box"><button class="close" onclick="closeModal()">×</button><div class="eyebrow">Reservation request</div><h2>Almost there.</h2><p id="modalText">Your request has been prepared.</p><button class="btn" onclick="closeModal()">Done</button></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+function toggleNav(){ $('#navLinks').classList.toggle('open'); }
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>$('#navLinks').classList.remove('open')));
+function filterMenu(cat,btn){
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
+ document.querySelectorAll('.food-card').forEach(card=>card.style.display=(cat==='all'||card.dataset.cat===cat)?'flex':'none');
+}
+function openReservation(){document.querySelector('#reservation').scrollIntoView({behavior:'smooth'});}
+function scrollToContact(){document.querySelector('#contact').scrollIntoView({behavior:'smooth'});}
+function closeModal(){$('#modal').classList.remove('open')}
+function showToast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500)}
+$('#guestDate').min=new Date().toISOString().split('T')[0];
+$('#bookingForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const name=$('#guestName').value.trim(),date=$('#guestDate').value,time=$('#guestTime').value,count=$('#guestCount').value;
+ $('#modalText').textContent=`Thanks, ${name}! Your ${count} reservation request for ${date} at ${time} has been received. This demo does not send data to a server—connect the form to WhatsApp, email or a backend before launch.`;
+ $('#modal').classList.add('open');
+ e.target.reset();
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+ const id=a.getAttribute('href');if(id.length>1){const el=document.querySelector(id);if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}}
+}));
+</script>
+</body>
+</html>
